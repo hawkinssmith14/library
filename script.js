@@ -51,3 +51,10 @@ function displayBooks() {
 }
 
 displayBooks();
+
+const newBookBtn = document.querySelector("new-book-btn");
+const container = document.querySelector("form-container");
+newBookBtn.addEventListener("click", () => {
+    const bookForm = document.createElement("form");
+
+})
