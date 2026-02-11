@@ -23,22 +23,22 @@ console.log(myLibrary);
 
 function displayBooks() {
     const library = document.getElementById("books");
-    library.textContent = "";
+    //library.textContent = "";
     
     myLibrary.forEach((book) => {
-        const card = document.createElement("div");
+        const card = document.createElement("tr");
         card.classList.add("book-card");
 
-        const title = document.createElement("h3");
-        title.textContent = book.title;
+        const title = document.createElement("td");
+        title.textContent = `"${book.title}"`;
 
-        const author = document.createElement("p");
-        author.textContent = `Author: ${book.author}`;
+        const author = document.createElement("td");
+        author.textContent = book.author;
 
-        const pages = document.createElement("p"); 
-        pages.textContent = `Pages: ${book.pages}`;
+        const pages = document.createElement("td"); 
+        pages.textContent = book.pages;
 
-        const read = document.createElement("p");
+        const read = document.createElement("td");
         read.textContent = book.read;
 
         card.appendChild(title);
