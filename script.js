@@ -10,6 +10,10 @@ function Book(title, author, pages, read) {
     this.id = crypto.randomUUID(); // Creates a unique id
 }
 
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+};
+
 function addBookToLibrary(title, author, pages, read) {
     // Creates a new book using the above constructor
     const newBook = new Book(title, author, pages, read);
@@ -17,8 +21,8 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(newBook);
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkein", "567", "Read");
-addBookToLibrary("Harry Potter", "J.K. Rowling", "761", "Not read");
+addBookToLibrary("The Hobbit", "J.R.R. Tolkein", "567", true);
+addBookToLibrary("Harry Potter", "J.K. Rowling", "761", false);
 console.log(myLibrary);
 
 function displayBooks() {
@@ -39,7 +43,13 @@ function displayBooks() {
         pages.textContent = book.pages;
 
         const read = document.createElement("td");
-        read.textContent = book.read;
+        const readToggle = document.createElement("input");
+        readToggle.type = "checkbox";
+        readToggle.checked = !!book.read;
+        readToggle.addEventListener("change", () => {
+            book.toggleRead();
+        });
+        read.appendChild(readToggle);
 
         const actions = document.createElement("td");
         actions.classList.add("delete-cell");
@@ -78,7 +88,7 @@ form.addEventListener("submit", (e) => {
     const title = form.title.value.trim();
     const author = form.author.value.trim();
     const pages = Number(form.pages.value);
-    const read = form.read.checked ? "Read" : "Not read";
+    const read = form.read.checked;
 
     addBookToLibrary(title, author, pages, read);
     form.reset();
@@ -87,4 +97,3 @@ form.addEventListener("submit", (e) => {
 
     
 });
-
