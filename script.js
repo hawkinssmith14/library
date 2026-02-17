@@ -1,18 +1,16 @@
 // Array to store all the books
 const myLibrary = [];
 
-// Book constructor 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author; 
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID(); // Creates a unique id
+// Book class
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
 }
-
-Book.prototype.toggleRead = function () {
-    this.read = !this.read;
-};
 
 function addBookToLibrary(title, author, pages, read) {
     // Creates a new book using the above constructor
